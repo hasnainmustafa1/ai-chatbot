@@ -1,8 +1,8 @@
 import streamlit as st
-from google.genai import Client
+from google. genai import Client
 
 # Gemini Client
-client = Client(api_key="PASTE_YOUR_API_KEY_HERE")
+client = Client(api_key="AIzaSyBbPl2ZlmqHKyYGUOSXlydyLlvwmu0rIoI")
 
 # Page title
 st.set_page_config(page_title="AI Chatbot", page_icon="🤖")
@@ -41,3 +41,4 @@ if user_input:
     st.session_state.messages.append(
         {"role": "assistant", "content": bot_reply}
     )
+
