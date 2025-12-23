@@ -2,7 +2,7 @@ import streamlit as st
 from google.genai import Client
 
 st.set_page_config(page_title="🤖 AI Chatbot (Gemini)")
-st.title("🤖 AI Chatbot (Gemini)")
+st.title("🤖 Chatbot by Hasnain")
 
 user_input = st.text_input("Apna sawal likho aur AI se jawab lo")
 
@@ -20,3 +20,4 @@ if user_input:
     except Exception as e:
         st.error("Gemini API error aaya 😥")
         st.exception(e)
+
