@@ -6,10 +6,11 @@ st.set_page_config(page_title="🤖 AI Chatbot (Gemini)")
 st.title("🤖 AI Chatbot (Gemini)")
 user_input = st.text_input("Apna sawal likho aur AI se jawab lo")
 
-# Configure Gemini
+# Configure API
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+# ✅ ONLY SUPPORTED MODEL
+model = genai.GenerativeModel("gemini-pro")
 
 if user_input:
     try:
