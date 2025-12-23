@@ -1,5 +1,5 @@
 import streamlit as st
-from google.genai import Client
+from google. genai import Client
 
 client = Client(api_key=st.secrets["GEMINI_API_KEY"])
 
@@ -41,6 +41,7 @@ if user_input:
     st.session_state.messages.append(
         {"role": "assistant", "content": bot_reply}
     )
+
 
 
 
