@@ -12,7 +12,7 @@ client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 if user_input:
     try:
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-1.5-flash-001",
             contents=user_input
         )
 
@@ -21,3 +21,4 @@ if user_input:
     except Exception as e:
         st.error("Gemini API error aaya 😥")
         st.code(str(e))
+
