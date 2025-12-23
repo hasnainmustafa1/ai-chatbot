@@ -1,55 +1,23 @@
 import streamlit as st
-from google. genai import Client
+from google import genai
 
-client = Client(api_key=st.secrets["GEMINI_API_KEY"])
-
-# Page title
-st.set_page_config(page_title="AI Chatbot", page_icon="🤖")
+st.set_page_config(page_title="AI Chatbot (Gemini)")
 
 st.title("🤖 AI Chatbot (Gemini)")
-st.write("Apna sawal likho aur AI se jawab lo")
+user_input = st.text_input("Apna sawal likho aur AI se jawab lo")
 
-# Chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Show old messages
-for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"])
-
-# User input
-user_input = st.chat_input("Yahan apna sawal likhein...")
+# Gemini client
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 if user_input:
-    # Show user message
-    st.chat_message("user").write(user_input)
-    st.session_state.messages.append(
-        {"role": "user", "content": user_input}
-    )
+    try:
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=user_input
+        )
 
-    # Gemini response
-    response = client.models.generate_content(
-    model="models/gemini-2.0-flash",
-    contents=[
-        {
-            "role": "user",
-            "parts": [{"text": user_input}]
-        }
-    ]
-)
+        st.success(response.text)
 
-    bot_reply = response.text
-
-
-
-    # Show bot reply
-    st.chat_message("assistant").write(bot_reply)
-    st.session_state.messages.append(
-        {"role": "assistant", "content": bot_reply}
-    )
-
-
-
-
-
-
+    except Exception as e:
+        st.error("Gemini API error aaya 😥")
+        st.code(str(e))
