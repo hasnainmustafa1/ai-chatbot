@@ -29,17 +29,19 @@ if user_input:
 
     # Gemini response
     response = client.models.generate_content(
-        model="models/gemini-pro-latest",
-        contents=user_input
-    )
+    model="models/gemini-flash-latest",
+    contents=user_input
+)
 
     bot_reply = response.text
+
 
     # Show bot reply
     st.chat_message("assistant").write(bot_reply)
     st.session_state.messages.append(
         {"role": "assistant", "content": bot_reply}
     )
+
 
 
 
