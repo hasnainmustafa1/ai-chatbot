@@ -29,11 +29,17 @@ if user_input:
 
     # Gemini response
     response = client.models.generate_content(
-    model="models/gemini-flash-latest",
-    contents=user_input
+    model="models/gemini-2.0-flash",
+    contents=[
+        {
+            "role": "user",
+            "parts": [{"text": user_input}]
+        }
+    ]
 )
 
     bot_reply = response.text
+
 
 
     # Show bot reply
@@ -41,6 +47,7 @@ if user_input:
     st.session_state.messages.append(
         {"role": "assistant", "content": bot_reply}
     )
+
 
 
 
